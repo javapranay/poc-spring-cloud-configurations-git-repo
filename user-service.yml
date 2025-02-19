@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    #driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    tomcat:
+      max-wait: 20000
+      max-active: 50
+      max-idle: 20
+      min-idle: 15
+  jpa:
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true 
+    properties:
+      hibernate:
+        format-sql: true
+server:
+  port: 8082
+  
+logging:
+  level:
+    com.diagonal.userservice: DEBUG
+    org.hibernate.sql: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    
+#Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+#Ribbon
+#task-service:
+#  ribbon:
+#    listOfServers: http://localhost:8083/, http://localhost:8084/
